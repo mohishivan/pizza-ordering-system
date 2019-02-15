@@ -26,8 +26,8 @@ const Pizzas = () => {
 
   // With LifeCycle {{{
 const with_lifecycle = withLifecycle({
-  onWillMount({fetching, dispatch}){
-    if(!fetching) dispatch(Actions.getPizzaSizes());
+  onWillMount({fetching, pizzaSizes, dispatch}){
+    if(pizzaSizes.length===0 && !fetching) dispatch(Actions.getPizzaSizes());
   }
 });
   //}}}
@@ -36,7 +36,6 @@ const enhance = compose(
   connect(state => ({ 
     pizzaSizes: state.pizzas.pizzaSizes
   })),
-  // withState('selectableGroupRef', 'setSelectableGroupRef', null),
   with_lifecycle
 );
 
