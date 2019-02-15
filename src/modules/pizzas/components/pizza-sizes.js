@@ -1,47 +1,51 @@
 import React from "react"
-import { compose, withHandlers, withStateHandlers, withState } from 'recompose'
-import styled from "styled-components";
+import { compose } from 'recompose'
 import {connect} from 'react-redux'
-import withLifecycle from '@hocs/with-lifecycle';
+import * as Actions from '../actions'
 import * as Selectors from '../selectors'
+import {capitalize} from '../../../utils/capitalize'
+import { Section } from '../styled'
 
-const PizzaSizes = ({sizesNames}) => {
+const PizzaSizes = ({sizesNames, current_pizza, dispatch}) => {
+  if(!current_pizza) return null;
+  const setSize = (pizzaSize) => () => dispatch(Actions.updatePizzaSize({pizzaSize})) 
   return(
-    <Container>
+    <Section>
       <h3>
-        Pizza Sizes
+        Choose Pizza Size
       </h3>
       <ul>
-        { sizesNames && sizesNames.map(size => <li>{ size }</li>)}
+        { sizesNames && sizesNames.map((size, index) => {
+          const selected = current_pizza.pizzaSize === size 
+          const OnOff =  selected ? 'on' : 'off'
+          const label_id = `pizza-size-label-${ index }`
+          const checkbox_id = `pizza-topping-checkbox-${ index + 3 }`
+          return(
+            <li 
+              key={`pizza-${size}`}
+              className={ OnOff }
+              onClick={ setSize(size) }
+              onKeyPress={ setSize(size) }
+              role="checkbox"
+              tabIndex={ index + 1}
+              aria-checked={ selected }
+              aria-label={ `${size} size pizza` }
+            >
+              <label id={ label_id } htmlFor={ checkbox_id }>{ capitalize(size) }</label>
+            </li>
+          )
+        })}
       </ul>
-    </Container>
+    </Section>
   )
 }
 
-//{{{ Container
-export const Container = styled.div`
-h3 {
-  font:600 22px Roboto;
-}
-ul {
-  margin:0px;
-  display:flex;
-  flex-flow:row nowrap;
-  justify-content:center;
-  li {
-    border:1px solid #ddd;
-    list-style:none;
-    margin:10px 10px;
-    padding:10px 30px;
-  }
-}
-`;
-//}}}
 
 const enhance = compose(
   connect(state => ({ 
     pizzaSizes: Selectors.pizzaSizes(state),
     sizesNames: Selectors.sizesNames(state),
+    current_pizza: state.pizzas.current_pizza,
   })),
   // withState('selectableGroupRef', 'setSelectableGroupRef', null),
   // with_lifecycle

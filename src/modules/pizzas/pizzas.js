@@ -1,24 +1,21 @@
 import React from "react"
 import {connect} from 'react-redux'
-import { compose, withHandlers, branch, renderComponent, withStateHandlers, withState } from 'recompose'
+import { compose } from 'recompose'
 import withLifecycle from '@hocs/with-lifecycle';
 import * as Actions from './actions'
-import * as Thunks from './thunks'
-import PizzaSizes from './components/pizza-sizes'
 import AddNewPizza from './components/add-new-pizza'
-import Toppings from './components/toppings'
-import AddToCart from './components/add-to-cart'
 import OrderItems from './components/order-items'
-import { Container, Builder, Cart } from "./styled";
+import PizzaForm from './components/pizza-form'
+import { Container, Builder, Cart, Panel } from "./styled";
 
 const Pizzas = () => {
   return(
     <Container>
       <Builder>
-        <AddNewPizza />
-        <PizzaSizes />
-        <Toppings />
-        <AddToCart />
+        <Panel>
+          <AddNewPizza />
+          <PizzaForm />
+        </Panel>
       </Builder>
       <Cart>
         <OrderItems />
@@ -30,7 +27,7 @@ const Pizzas = () => {
   // With LifeCycle {{{
 const with_lifecycle = withLifecycle({
   onWillMount({fetching, dispatch}){
-    if(!fetching) dispatch(Thunks.getPizzaSizes());
+    if(!fetching) dispatch(Actions.getPizzaSizes());
   }
 });
   //}}}

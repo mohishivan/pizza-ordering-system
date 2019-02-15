@@ -1,23 +1,23 @@
 import React from "react"
-import styled from "styled-components";
 import {connect} from 'react-redux'
-import withLifecycle from '@hocs/with-lifecycle';
 import * as Actions from '../actions'
+import {Button} from '../styled'
 
-const AddNewPizza = ({dispatch}) => {
+const AddNewPizza = ({current_pizza, dispatch}) => {
+  if(current_pizza) return null;
+  const add_new_pizza = () => dispatch(Actions.addNewPizza())
   return(
-    <Button onClick={ () => dispatch(Actions.addNewPizza()) }>
+    <Button 
+      tabIndex="1" 
+      onClick={ add_new_pizza }
+      onKeyPress={ add_new_pizza }
+      aria-label="add pizza"
+    >
       Add Pizza
     </Button>
   )
 }
 
-//{{{ Button
-export const Button = styled.button`
-  font:600 22px Roboto;
-  border:1px solid darkcyan;
-  border-radius:5px;
-`;
-//}}}
-
-export default connect()(AddNewPizza)
+export default connect(state => ({
+  current_pizza: state.pizzas.current_pizza
+}))(AddNewPizza)
