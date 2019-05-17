@@ -1,4 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# A pizza ordering system
+
+## Features
+- Selecting pizza size
+- Selecting toppings available for each size
+- Add pizza to cart
+- Sumarize the cart with prices/toppings and total amount.
+
+* The app is A11y ready *
+ 
+* This is a sample project using the following *
+- React
+- Redux
+- Redux-thunk (it was a simple graphql request)
+- Graphql API
+- Reselect
+- Styled-components
+- React-Router
+- acdlite/recompose
+- HOC/lifecycle
+
+* The code is structured as following *
+
+- src/modules/pizzas is the main module
+- reducer.js -> the redux reducer
+- action-types.js -> the redux actions types
+- reselect.js -> state selectors
+- queries -> the graphql query
+- actions.js -> redux actions and thunks
+- components folder contains UI sub components
+
 
 ## Available Scripts
 
