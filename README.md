@@ -6,11 +6,10 @@
 - Selecting pizza size
 - Selecting toppings available for each size
 - Add pizza to cart
-- Sumarize the cart with prices/toppings and total amount.
-
-* The app is A11y ready *
+- Sumarize the cart with prices/toppings and total amount
+- The app is A11y ready
  
-* This is a sample project using the following *
+## This is a sample project using the following
 - React
 - Redux
 - Redux-thunk (it was a simple graphql request)
@@ -21,8 +20,7 @@
 - acdlite/recompose
 - HOC/lifecycle
 
-* The code is structured as following *
-
+## The code is structured as following
 - src/modules/pizzas is the main module
 - reducer.js -> the redux reducer
 - action-types.js -> the redux actions types
