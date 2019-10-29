@@ -27,7 +27,8 @@ const Pizzas = () => {
   // With LifeCycle {{{
 const with_lifecycle = withLifecycle({
   onWillMount({fetching, pizzaSizes, dispatch}){
-    if(pizzaSizes.length===0 && !fetching) dispatch(Actions.getPizzaSizes());
+    // Static pizzaSizes from json is placed in the redux store 
+    //if(pizzaSizes.length===0 && !fetching) dispatch(Actions.getPizzaSizes());
   }
 });
   //}}}

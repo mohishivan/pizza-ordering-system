@@ -45,7 +45,9 @@ export const sizeToppings = createSelector(
 export const sizeDefaultToppings = createSelector(
   [sizeToppings],
   (toppings) => {
-    const defaultToppings =  toppings.filter(({defaultSelected}) => defaultSelected ).map(({topping}) => topping.name)
+    const defaultToppings =  toppings
+      .filter(({defaultSelected}) => defaultSelected )
+      .map(({topping}) => topping.name)
     return defaultToppings 
   }
 )
