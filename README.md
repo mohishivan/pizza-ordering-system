@@ -1,6 +1,6 @@
 # A pizza ordering system
 ## Demo
- - https://pizzas.ibrahim-ahmed.com/
+ - https://objective-ardinghelli-3f179e.netlify.app/
 
 ## Features
 - Selecting pizza size
