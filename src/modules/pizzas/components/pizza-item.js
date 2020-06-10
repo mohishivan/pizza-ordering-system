@@ -52,7 +52,6 @@ const PizzaItem = ({pizza, pizzaPrices, pizzaSizes, details, toggle, dispatch}) 
 }
 //{{{ Buttons
 export const Buttons = styled.div`
-  display:none;
   position:absolute;
   bottom:0px;
   right:0px;
@@ -142,7 +141,7 @@ const enhance = compose(
     pizzaSizes: Selectors.pizzaSizes(state),
     pizzaPrices: Selectors.pizzaPrices(state),
   })),
-  withState('details', 'toggle', false),
+  withState('details', 'toggle', true),
   withHandlers({
     show: ({ toggle }) => (e) => toggle(true),
     hide: ({ toggle }) => (e) => toggle(false),

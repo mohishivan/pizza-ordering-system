@@ -2,7 +2,7 @@ import React from "react"
 import {connect} from 'react-redux'
 import { compose } from 'recompose'
 import withLifecycle from '@hocs/with-lifecycle';
-import * as Actions from './actions'
+// import * as Actions from './actions'
 import AddNewPizza from './components/add-new-pizza'
 import OrderItems from './components/order-items'
 import PizzaForm from './components/pizza-form'
